@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "d7828237-a49e-420f-a63c-07fb63fd6f53",
+		"name": "App.js",
+		"description": "Introduction\n\nApp.js is a simple lightweight RESTful api endpoint implementation, allowing programmatic CRUD operation on user records, while integrating mongo atlas database endpoint for storage and a basic HTTP authentication middleware for resource authorization.\n\nImplementation  \nApp.js uses a data model built around the mongoose schema found in the ./model/user.js directory as further described in this documentation.\n\nFurthermore, this API requires you to authenticate with the following credentials:\n\nAuthorized user: Admin  \nAuthorized password: test123",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24777343"
+	},
+	"item": [
+		{
+			"name": "Model",
+			"item": [],
+			"description": "User.js contains the user schema as an object based data model for interaction with the mongo atlas database. It’s structure is represented in the illustration below:\n\nSchema({  \nfirstName:{  \ntype: String,  \nrequired: true,  \ntrim: true  \n},  \nlastName:{  \ntype: String,  \nrequired: true,  \ntrim: true  \n},  \ngender:{  \ntype: String,  \nrequired: true,\n\n```\n},\ndate_of_birth: {\n    type: Date,\n    required: true\n}\n\n```\n\n}, {timestamps: true});\n\nNB: Please note that other properties /fields like _ID, date_created and date_updated will be automatically created in the database"
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Alaye\",\r\n\"lastName\": \"Ninja\",\r\n\"gender\": \"M\",\r\n\"date_of_birth\": \"2015-04-08\",\r\n}",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "<img src=\"https://content.pstmn.io/df62e180-238a-4907-bec4-65a32c6eb893/Rmxvd0NoYXJ0LmpwZw==\" alt=\"Request%20Flow%20Figure%201\" width=\"1157\" height=\"762\">\n\nEndpoint URI: \"/users\"\n\nRequest type: POST\n\nSummary:  \nThis API endpoint uses the endpoint user supplied object JSON data payload to create then, save the created user to the database. A response in with JSON data (Created user) is sent in the format of:\n\nStatus: 200\n\nData:\n\n{  \n\"id\": ,  \n\"firstname\": ,  \n\"lastname\": ,  \n\"gender\": ,  \n\"date_of_birth\":,  \n\"date_created\": ,  \n\"date_updated\":,  \n}"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"firstName\": \"Alaye\",\r\n\"lastName\": \"Ninja\",\r\n\"gender\": \"M\",\r\n\"date_of_birth\": \"2015-04-08\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/6388afa31d933a15a7b47b94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"6388afa31d933a15a7b47b94"
+					]
+				},
+				"description": "<img src=\"https://content.pstmn.io/c321b6bf-fb5d-44a8-b9c0-006e5c772c31/UHV0UmVxdWVzdC5kcmF3aW8ucG5n\" alt=\"Request%20Flow%20Figure%203\" width=\"1149\" height=\"701\">\n\nEndpoint URI : \"/users\"\n\nRequest type: PUT\n\nSummary:  \nThis API endpoint uses the endpoint user supplied “id” to query the database. The record with _id property set as “id” is then updated with the data payload supplied in the body of the request. The response data (Updated user) is provided in the format of:\n\nCode: 200\n\n{  \n\"id\": ,  \n\"firstname\": ,  \n\"lastname\": ,  \n\"gender\": ,  \n\"date_of_birth\": ,  \n\"date_created\": ,  \n\"date_updated\": ,  \n}"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/6388afa31d933a15a7b47b94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"6388afa31d933a15a7b47b94"
+					]
+				},
+				"description": "<img src=\"https://content.pstmn.io/94259de6-4123-4948-8fc3-9fac3625faf8/RGVsZXRlIFJlcXVlc3QuZHJhd2lvLnBuZw==\" alt=\"Request%20Flow%20Figure%205\" width=\"1149\" height=\"701\">\n\nEndpoint: \"users/{id}\"\n\nRequest type: Delete\n\nSummary:  \nThis API endpoint uses the endpoint user supplied “id” to query to database and delete the specific record with the _id property set as “id” and sends a successful response of:\n\nCode: 200\n\nResponse: Delete Successful"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/6388afa31d933a15a7b47b94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"6388afa31d933a15a7b47b94"
+					]
+				},
+				"description": "<img src=\"https://content.pstmn.io/c0ac9735-e174-4794-90d6-d47fdf101914/R2V0IFJlcXVlc3Qgd2l0aCBJRC5kcmF3aW8ucG5n\" alt=\"Request%20Flow%20Figure%205\" width=\"1149\" height=\"701\">\n\nEnd point URI: /users/:id  \nRequest type: get  \nSummary:  \nThis API endpoint uses the endpoint user defined “id” parameter to query the database for a specific user with the _id property sets as “I’d” and sends a JSON response in the form of:\n\nStatus: 200\n\n{  \n\"id\": ,  \n\"firstname\": ,  \n\"lastname\": ,  \n\"gender\": ,  \n\"date_of_birth\":,  \n\"date_created\": ,  \n\"date_updated\":  \n}"
+			},
+			"response": []
+		}
+	]
+}
